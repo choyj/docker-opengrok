@@ -1,14 +1,14 @@
 # A docker container for opengrok 1.1-rc33!
 
 ## Opengrok release 1.1-rc33 from oficial source:
-Directly downloaded from oficial source:
+Directly downloaded from official source:
 https://github.com/OpenGrok/OpenGrok/releases/tag/1.1-rc33
 
 ## Additional info about the container:
-* SSH with root access;
+* SSH with root access
 * Tomcat 9
-* JRE 8(Required for Opengrok 1.0);
-* Preconfigured cron task for reindexing every hour);
+* JRE 8(Required for Opengrok 1.0)
+* Preconfigured cron task for reindexing every hour)
 
 ## How to build:
 cd <root of this git repo>
@@ -21,9 +21,7 @@ docker run -d -v <path/to/your/src>:/src -p 8080:8080 -p 2222:22 my_opengrok
 https://github.com/oracle/opengrok
 
 ## SSH:
-First inspect the docker container so you can find the address to connect, then ssh into it using the following credentials:
-* user:root
-* pass:root
+First inspect the docker container so you can find the address to connect, then ssh into it using root/root
 
 ## Default URL:
 localhost:8080/source
