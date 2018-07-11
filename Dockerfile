@@ -1,8 +1,10 @@
 FROM tomcat:9-jre8
-MAINTAINER Nathan Guimaraes "dev.nathan.guimaraes@gmail.com"
+MAINTAINER Jack Choy "private@email.com"
+# original from Nathan Guimaraes "dev.nathan.guimaraes@gmail.com"  Thanks, Nathan!
 
 #PREPARING OPENGROK BINARIES AND FOLDERS
-ADD https://github.com/OpenGrok/OpenGrok/releases/download/1.1-rc11/opengrok-1.1-rc11.tar.gz /opengrok.tar.gz
+ENV version 1.1-rc31
+ADD https://github.com/OpenGrok/OpenGrok/releases/download/${version}/opengrok-${version}.tar.gz /opengrok.tar.gz
 RUN tar -zxvf /opengrok.tar.gz && mv opengrok-* /opengrok && chmod -R +x /opengrok/bin
 RUN mkdir /src
 RUN mkdir /data
@@ -10,16 +12,16 @@ RUN ln -s /data /var/opengrok
 RUN ln -s /src /var/opengrok/src
 
 #INSTALLING DEPENDENCIES
-RUN apt-get update && apt-get install -y exuberant-ctags git subversion mercurial unzip openssh-server cron inotify-tools
+RUN apt-get update && apt-get install -y exuberant-ctags git subversion mercurial unzip openssh-server cron inotify-tools vim
 
 #SSH configuration
 RUN mkdir /var/run/sshd
-RUN echo 'root:root' |chpasswd
+RUN echo 'root:root' | chpasswd
 RUN sed -ri 's/[ #]*PermitRootLogin\s+.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -ri 's/[ #]*UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
 
 # CRON for Reindex configuration
-RUN echo "*/5 * * * * root  /scripts/index.sh" > /etc/cron.d/opengrok-cron
+RUN echo "0 */1 * * * root  /scripts/index.sh" > /etc/cron.d/opengrok-cron
 RUN chmod 0644 /etc/cron.d/opengrok-cron
 
 #ENVIRONMENT VARIABLES CONFIGURATION
