@@ -29,7 +29,11 @@ Refer to https://github.com/oracle/opengrok/wiki/Read-only-configuration for det
 
 ## Running the indexer
 `OPENGROK_READ_XML_CONFIGURATION=/var/opengrok/etc/read-only.xml /opengrok/bin/OpenGrok index`
+You may want to modify your container's /scripts/index.sh to use this.
 
 ## SSH:
 First inspect the docker container so you can find the address to connect, then ssh into it using root/root
+
+## Testing:
+If you decide to use your maven-built opengrok, make sure you extract your distribution/target/opengrok-xxx.tar.gz into your container's /opengrok and then run `OpenGrok deploy`.  Do not simply copy over source.war into tomcat's webapps!
 

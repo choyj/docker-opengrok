@@ -1,5 +1,0 @@
-This config will merge suse-config.xml into /var/opengrok/etc/configuration.xml.
-suse-config.xml adds support for bug linkages to jira and bugzilla.
-
-export OPENGROK_READ_XML_CONFIGURATION=/root/suse-config.xml
-/opengrok/bin/OpenGrok index

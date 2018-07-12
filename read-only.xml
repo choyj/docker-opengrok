@@ -1,18 +1,23 @@
-<!-- This file goes in /var/opengrok/etc/read-only.xml -->
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="1.8.0_162" class="java.beans.XMLDecoder">
  <object class="org.opensolaris.opengrok.configuration.Configuration" id="Configuration0">
   <void property="bugPattern">
-    <string>bsc\#(\d+)</string>
+    <string>\b(bsc\#(\d+))\b</string>
   </void>
   <void property="bugPage">
     <string>https://bugzilla.suse.com/show_bug.cgi?id=</string>
   </void>
+  <void property="jiraPattern">
+    <string>\b(([A-Z]+-\d+))\b</string>
+  </void>
+  <void property="jiraPage">
+    <string>https://jira.prv.suse.net/browse/</string>
+  </void>
   <void property="reviewPattern">
-    <string>\b([A-Z]+-\d+)\b</string>
+    <string>\b(Change-Id: (\w+))\b</string>
   </void>
   <void property="reviewPage">
-    <string>https://jira.prv.suse.net/browse/</string>
+    <string>https://gerrit.suse.provo.cloud/#/q/</string>
   </void>
  </object>
 </java>
